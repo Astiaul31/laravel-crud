@@ -24,6 +24,12 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// route Pembelian
+// route siswa
 Route::resource('siswa', SiswaController::class);
+// route Pembelian
 Route::resource('pembelian', PembelianController::class);
+
+// test tempalte
+Route::get('test-template', function() {
+    return view('layouts.admin');
+});
