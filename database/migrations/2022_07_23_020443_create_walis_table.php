@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSiswasTable extends Migration
+class CreateWalisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateSiswasTable extends Migration
      */
     public function up()
     {
-        Schema::create('siswas', function (Blueprint $table) {
+        Schema::create('walis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('nis')->unique();
-            $table->enum('jenis_kelamin',['Laki-laki', 'Perempuan']);
-            $table->string('agama');
-            $table->date('tgl_lahir');
-            $table->text('alamat');
+            $table->string('foto');
+            $table->unsignedbiginteger('id_siswa');
+            // membuat fk id_siswa yang mengacu kpd field id di table siswas
+            $table->foreign('id_siswa')->references('id')->on('siswas')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateSiswasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswas');
+        Schema::dropIfExists('walis');
     }
 }
